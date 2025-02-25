@@ -19,7 +19,7 @@ namespace TubestockTracker
             Connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
             await Connection.CreateTableAsync<StockRecord>();
             await Connection.CreateTableAsync<LabelImage>();
-            await Connection.CreateIndexAsync(nameof(LabelImage), nameof(LabelImage.stockRecordId), nameof(LabelImage.Index), true);
+            await Connection.CreateIndexAsync(nameof(LabelImage), [nameof(LabelImage.stockRecordId), nameof(LabelImage.Index)], true);
         }
 
 

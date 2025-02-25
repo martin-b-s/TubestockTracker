@@ -19,7 +19,8 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		builder.Services.AddSingleton<Storage>();
+		//builder.Services.AddSingleton<Storage>();
+		builder.Services.AddSingleton<Foundation>();
 
 		return builder.Build();
 	}
