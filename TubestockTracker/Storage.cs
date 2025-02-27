@@ -17,11 +17,10 @@ namespace TubestockTracker
                 return;
 
             Connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            await Connection.CreateTableAsync<StockRecord>();
-            await Connection.CreateTableAsync<LabelImage>();
-            await Connection.CreateIndexAsync(nameof(LabelImage), [nameof(LabelImage.stockRecordId), nameof(LabelImage.Index)], true);
+            await Connection.CreateTableAsync<StockRecord>(CreateFlags.ImplicitPK | CreateFlags.AutoIncPK);
+            await Connection.CreateTableAsync<LabelImage>(CreateFlags.ImplicitPK | CreateFlags.AutoIncPK);
+            await Connection.CreateIndexAsync(nameof(LabelImage), [nameof(LabelImage.StockRecordId), nameof(LabelImage.Index)], true);
         }
-
 
         public async Task<List<StockRecord>> GetStockRecordsAsync()
         {
@@ -43,11 +42,16 @@ namespace TubestockTracker
             await Init();
             return await Connection.DeleteAsync(record);
         }
+        public async Task<StockRecord> GetStockRecord(int stockRecordID)
+        {
+            await Init();
+            return await Connection.Table<StockRecord>().Where(R => R.ID == stockRecordID).FirstAsync();
+        }
 
         public async Task<List<LabelImage>> GetLabelImagesAsync(int stockRecordId)
         {
             await Init();
-            return await Connection.Table<LabelImage>().Where(I => I.stockRecordId == stockRecordId).ToListAsync();
+            return await Connection.Table<LabelImage>().Where(I => I.StockRecordId == stockRecordId).ToListAsync();
         }
 
     }

@@ -17,7 +17,7 @@ namespace TubestockTracker
     public sealed class LabelImage
     {
         public int ID { get; set; }
-        public int stockRecordId { get; set; }
+        public int StockRecordId { get; set; }
         public int Index { get;  set; }
         public byte[] Buffer { get;  set; }
     }

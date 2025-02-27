@@ -10,12 +10,12 @@ namespace TubestockTracker
 {
     public class Foundation
     {
-        private HashSet<string> nameSet;
+        private readonly HashSet<string> nameSet;
 
         public Foundation()
         {
             this.Storage = new Storage();
-            this.nameSet = new HashSet<string>();
+            this.nameSet = [];
 
             _ = LoadPlantNameDictionary();
         }

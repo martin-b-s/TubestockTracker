@@ -2,7 +2,7 @@
 {
     public partial class MainPage : ContentPage
     {
-        Foundation shell;
+        readonly Foundation shell;
         List<StockRecord> records;
 
 
@@ -20,8 +20,13 @@
             records = await shell.LoadRecords();
         }
 
-        private void OnAddClicked(object sender, EventArgs e)
+        private async void OnAddClicked(object sender, EventArgs e)
         {
+            var navigationParameter = new ShellNavigationQueryParameters
+            {
+                { "context", PropertyContext.Add },
+            };
+            await Shell.Current.GoToAsync(nameof(StockPropertyPage), navigationParameter);
             //TODO: goto add page
         }
     }

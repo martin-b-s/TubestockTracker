@@ -11,7 +11,7 @@
                 Text="Tubestock Tracker"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
-            <ListView  x:Name="RecordView" ItemsSource="{Binding Monkeys}">
+            <ListView  x:Name="RecordView" ItemsSource="{Binding records}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
