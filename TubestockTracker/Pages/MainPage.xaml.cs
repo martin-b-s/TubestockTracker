@@ -2,22 +2,20 @@
 {
     public partial class MainPage : ContentPage
     {
-        readonly Foundation shell;
-        List<StockRecord> records;
+        MainViewModel viewModel;
 
-
-        public MainPage(Foundation shell)
+        public MainPage(Foundation foundation)
         {
-            this.shell = shell;
-
             InitializeComponent();
 
-            _ = Load();
+            this.viewModel = new MainViewModel(foundation.Storage);
+            BindingContext = viewModel;
         }
-
-        private async Task Load()
+        protected override void OnAppearing()
         {
-            records = await shell.LoadRecords();
+            base.OnAppearing();
+
+            _ = viewModel.Load();
         }
 
         private async void OnAddClicked(object sender, EventArgs e)
@@ -27,7 +25,13 @@
                 { "context", PropertyContext.Add },
             };
             await Shell.Current.GoToAsync(nameof(StockPropertyPage), navigationParameter);
+
             //TODO: goto add page
+        }
+
+        private void listRecords_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
         }
     }
 

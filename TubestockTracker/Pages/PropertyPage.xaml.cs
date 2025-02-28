@@ -9,17 +9,18 @@ public partial class StockPropertyPage : ContentPage, IQueryAttributable
     readonly StockViewModel viewModel;
 	int? stockId;
 
-	public StockPropertyPage(Foundation shell)
+	public StockPropertyPage(Foundation foundation)
 	{
         InitializeComponent();
 
-        this.viewModel = new StockViewModel(shell.Storage);
+        this.viewModel = new StockViewModel(foundation.Storage);
     }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
 		context = (PropertyContext)query["context"];
-		stockId = (int)query["stockId"];
+        if(query.ContainsKey("stockId"))
+            stockId = (int)query["stockId"];
 
         this.titleLabel.Text = $"{context} tube stock record";
     }
