@@ -38,7 +38,7 @@ public partial class StockPropertyPage : ContentPage, IQueryAttributable
 
             case PropertyContext.Edit:
                 if(stockId.HasValue)
-                    _ = viewModel.Load(stockId.Value);
+                    _ = viewModel.LoadAsync(stockId.Value);
                 break;
 
             default:
@@ -47,7 +47,7 @@ public partial class StockPropertyPage : ContentPage, IQueryAttributable
     }
     private async void SaveBtn_Clicked(object sender, EventArgs e)
     {
-        await viewModel.Save();
+        await viewModel.SaveAsync();
         await Shell.Current.GoToAsync(".."); //navigate back
     }
 }

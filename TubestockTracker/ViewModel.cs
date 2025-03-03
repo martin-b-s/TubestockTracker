@@ -37,11 +37,13 @@ namespace TubestockTracker
             }
         }
 
-        public async Task Load(int ID)
+        public async Task LoadAsync(int ID)
         {
             Record = await storage.GetStockRecord(ID);
         }
-        public async Task Save() => await storage.SaveRecordAsync(Record);
+        public void Load(StockRecord record) => this.Record = record;
+        public async Task SaveAsync() => await storage.SaveRecordAsync(Record);
         public void New() => Record = new StockRecord();
+        public async Task DeleteAsync() => await storage.DeleteRecordAsync(Record);
     }
 }

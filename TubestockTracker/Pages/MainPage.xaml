@@ -10,10 +10,27 @@
             <RowDefinition Height="*"  />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding Records}" Margin="8">
+        <ListView x:Name="listRecords" Grid.Row="0" ItemsSource="{Binding Records}" Margin="8" ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="tt:StockRecord">
-                    <TextCell Text="{Binding Name}"/>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Timestamp, StringFormat='{0:yyyy/MM/dd}'}"/>
+                            <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Text="Edit" Clicked="OnEditClicked" Margin="8" />
+                            <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Text="Delete" Clicked="OnDeleteClicked" Margin="8" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
