@@ -13,7 +13,7 @@ public partial class StockPropertyPage : ContentPage, IQueryAttributable
 	{
         InitializeComponent();
 
-        this.viewModel = new StockViewModel(foundation.Storage);
+        this.viewModel = new StockViewModel(foundation);
     }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)

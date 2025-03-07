@@ -41,6 +41,7 @@ namespace TubestockTracker
         }
 
         public Storage Storage { get; private set; }
+        public IReadOnlyCollection<string> names => nameSet;
 
 
         

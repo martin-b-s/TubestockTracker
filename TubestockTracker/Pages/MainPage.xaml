@@ -10,14 +10,14 @@
             <RowDefinition Height="*"  />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView x:Name="listRecords" Grid.Row="0" ItemsSource="{Binding Records}" Margin="8" ItemSelected="OnItemSelected">
+        <ListView x:Name="listRecords" Grid.Row="0" ItemsSource="{Binding Records}" Margin="8" ItemSelected="OnItemSelected" RowHeight="56">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="tt:StockRecord">
                     <ViewCell>
-                        <Grid>
+                        <Grid Margin="16,8,16,8">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -25,10 +25,10 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" />
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
                             <Label Grid.Row="1" Grid.Column="0" Text="{Binding Timestamp, StringFormat='{0:yyyy/MM/dd}'}"/>
-                            <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Text="Edit" Clicked="OnEditClicked" Margin="8" />
-                            <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Text="Delete" Clicked="OnDeleteClicked" Margin="8" />
+                            <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" ImageSource="edit.png"  Clicked="OnEditClicked" Margin="8,0,8,0"/>
+                            <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" ImageSource="delete.png" Clicked="OnDeleteClicked" Margin="8,0,8,0"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

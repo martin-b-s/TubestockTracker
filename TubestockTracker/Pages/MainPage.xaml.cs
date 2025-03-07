@@ -54,7 +54,7 @@
             var answer = await DisplayAlert("Delete", $"Are you sure you want to delete {record?.Name}", "Delete", "Cancel");
             if (answer && record!= null)
             {
-                var recordViewModel = new StockViewModel(foundation.Storage);
+                var recordViewModel = new StockViewModel(foundation);
                 recordViewModel.Load(record);
 
                 await recordViewModel.DeleteAsync();

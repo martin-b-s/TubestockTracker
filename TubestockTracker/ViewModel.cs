@@ -23,7 +23,7 @@ namespace TubestockTracker
             PropertyChangedInvoke(nameof(Records));
         }
     }
-    public sealed class StockViewModel(Storage storage) : BaseViewModel
+    public sealed class StockViewModel(Foundation foundation) : BaseViewModel
     {
         private StockRecord _record;
 
@@ -39,11 +39,11 @@ namespace TubestockTracker
 
         public async Task LoadAsync(int ID)
         {
-            Record = await storage.GetStockRecord(ID);
+            Record = await foundation.Storage.GetStockRecord(ID);
         }
         public void Load(StockRecord record) => this.Record = record;
-        public async Task SaveAsync() => await storage.SaveRecordAsync(Record);
+        public async Task SaveAsync() => await foundation.Storage.SaveRecordAsync(Record);
         public void New() => Record = new StockRecord() { Timestamp = DateTime.Now };
-        public async Task DeleteAsync() => await storage.DeleteRecordAsync(Record);
+        public async Task DeleteAsync() => await foundation.Storage.DeleteRecordAsync(Record);
     }
 }
